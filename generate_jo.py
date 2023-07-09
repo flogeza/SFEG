@@ -30,33 +30,33 @@ def make_sprites(path):
     OFFSETS = {
         64: [
             (1, 0),
-            (-6, -4),
-            (0, -7),
-            (6, -6),
+            (-4, -3),
+            (0, -5),
+            (4, -4),
             (1, 0),
-            (-6, -4),
-            (0, -7),
-            (6, -6),
+            (-4, -3),
+            (0, -5),
+            (4, -4),
         ],
         128: [
             (2, 0),
-            (-12, -8),
-            (0, -14),
-            (12, -12),
+            (-8, -6),
+            (0, -10),
+            (8, -8),
             (2, 0),
-            (-12, -8),
-            (0, -14),
-            (12, -12),
+            (-8, -6),
+            (0, -10),
+            (8, -8),
         ],
         256: [
             (4, 0),
-            (-24, -16),
-            (0, -28),
-            (24, -24),
+            (-16, -12),
+            (0, -20),
+            (16, -16),
             (4, 0),
-            (-24, -16),
-            (0, -28),
-            (24, -24),
+            (-16, -12),
+            (0, -20),
+            (16, -16),
         ],
     }
 
@@ -76,7 +76,7 @@ def make_sprites(path):
             file_view = VIEW_FILES[view]
             png = grf.ImageFile(path / f'{zoom}_{file_view:04}.png')
             sprite_zoom = ZOOM_CONSTANT[zoom]
-            alt.append(grf.FileSprite(png, 0, 0, 768, 768, xofs=xofs - 384, yofs=yofs - 384, zoom=sprite_zoom))
+            alt.append(grf.FileSprite(png, 0, 0, 256, 256, xofs=xofs - 128, yofs=yofs - 128, zoom=sprite_zoom))
         sprites.append(grf.AlternativeSprites(*alt))
 
     return [{
@@ -88,8 +88,8 @@ def make_sprites(path):
 Train(
     id=1,
     name='V63 "Gigant"',
-    length=22,
-    liveries=make_sprites('v63nagyr4'),
+    length=11,
+    liveries=make_sprites('v63sprites_teszt03'),
     engine_class=Train.EngineClass.ELECTRIC,
     # sound_effects=modern_electric_sound,
     track_type=ELRL,
