@@ -1,0 +1,9 @@
+{
+    "version": 1,
+    "index": {
+        "train": {
+            "__1_aa_mid": 300,
+            "__1_aa_tail": 301
+        }
+    }
+}

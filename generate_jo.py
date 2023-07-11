@@ -14,6 +14,7 @@ g = grf.NewGRF(
     name='V63_007',
     description='V63_007',
     url='https://github.com/flogeza/SFEG',
+    id_map_file='id_map.json',
 )
 
 Train = g.bind(grf.Train)
