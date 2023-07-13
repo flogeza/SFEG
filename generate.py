@@ -4,7 +4,7 @@ from pathlib import Path
 
 import grf
 
-# import lib
+import lib
 
 # DEBUG_DIR = 'debug'
 # os.makedirs(DEBUG_DIR, exist_ok=True)
@@ -17,7 +17,9 @@ g = grf.NewGRF(
     id_map_file='id_map.json',
 )
 
-Train, Ship = map(g.bind, (grf.Train, grf.Ship))
+g.set_cargo_table(('OIL_',))
+
+Train, Ship = map(g.bind, (grf.Train, lib.Ship))
 
 set_global_train_y_offset = lambda ofs: grf.ComputeParameters(target=0x8e, operation=0x00, if_undefined=False, source1=0xff, source2=0xff, value=ofs)
 g.add(set_global_train_y_offset(4))
@@ -90,7 +92,7 @@ def make_train_sprites(path):
     return make_sprites(path, OFFSETS)
 
 
-def make_ship_sprites(path):
+def make_ship_sprites(path_empty, path_loaded):
     OFFSETS = {
         64: [
             (1, 0),
@@ -104,7 +106,19 @@ def make_ship_sprites(path):
         ],
     }
 
-    return make_sprites(path, OFFSETS)
+    empty = make_sprites(path_empty, OFFSETS)[0]
+    loaded = make_sprites(path_loaded, OFFSETS)[0]
+    return [{
+        'name': empty['name'],
+        'sprites': lib.VehicleSprites(
+            moving=[
+                empty['sprites'],
+                empty['sprites'],
+                empty['sprites'],
+                loaded['sprites'],
+            ],
+        ),
+    }]
 
 
 
@@ -137,16 +151,17 @@ Train(
 Ship(
     id=300,
     name='CVN68',
-    liveries=make_ship_sprites('cvn68'),
+    liveries=make_ship_sprites('cvn68', 'cvn68_loaded'),
     max_speed=Ship.kmh(100),
     introduction_date=date(1980, 1, 1),
     vehicle_life=40,
     model_life=144,
     climates_available=grf.ALL_CLIMATES,
     running_cost_factor=222,
-    cargo_capacity=0,
+    cargo_capacity=20,
     cost_factor=24,
-    refittable_cargo_classes=grf.CargoClass.PASSENGERS,
+    default_cargo_type=g.get_cargo_id('OIL_'),
+    # refittable_cargo_classes=grf.CargoClass.LIQUID | grf.CargoClass.PIECE_GOODS,
     additional_text=grf.fake_vehicle_info({
         'Info': 'Test ship',
     }),
