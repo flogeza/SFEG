@@ -48,7 +48,10 @@ def make_sprites(path, offsets, mask_path=None):
             sprite_zoom = ZOOM_CONSTANT[zoom]
             mask = None
             if mask_path:
-                mask = (grf.ImageFile(Path(mask_path) / f'{zoom}_{file_view:04}_mask.png'), 0, 0)
+                mask = grf.FileMask(
+                    grf.ImageFile(Path(mask_path) / f'{zoom}_{file_view:04}_mask.PNG'),
+                    mode=grf.Mask.Mode.OVERDRAW,
+                )
             alt.append(grf.FileSprite(png, 0, 0, 768, 768, xofs=xofs - 384, yofs=yofs - 384, zoom=sprite_zoom, mask=mask))
         sprites.append(grf.AlternativeSprites(*alt))
 
@@ -163,6 +166,7 @@ Ship(
     running_cost_factor=222,
     cargo_capacity=20,
     cost_factor=24,
+    misc_flags=Ship.Flags.USE_2CC,
     default_cargo_type=g.get_cargo_id('OIL_'),
     # refittable_cargo_classes=grf.CargoClass.LIQUID | grf.CargoClass.PIECE_GOODS,
     additional_text=grf.fake_vehicle_info({
