@@ -29,7 +29,7 @@ g.add(set_global_train_y_offset(4))
 RAIL, ELRL, MONO, MGLV = g.set_railtype_table(['RAIL', 'ELRL', 'MONO', 'MGLV'])
 
 
-def make_sprites(path, offsets):
+def make_sprites(path, offsets, mask_path=None):
     VIEW_FILES = [6, 5, 4, 3, 2, 1, 8, 7]
     ZOOM_CONSTANT = {
         64: grf.ZOOM_4X,
@@ -46,7 +46,10 @@ def make_sprites(path, offsets):
             file_view = VIEW_FILES[view]
             png = grf.ImageFile(path / f'{zoom}_{file_view:04}.png')
             sprite_zoom = ZOOM_CONSTANT[zoom]
-            alt.append(grf.FileSprite(png, 0, 0, 768, 768, xofs=xofs - 384, yofs=yofs - 384, zoom=sprite_zoom))
+            mask = None
+            if mask_path:
+                mask = (grf.ImageFile(Path(mask_path) / f'{zoom}_{file_view:04}_mask.png'), 0, 0)
+            alt.append(grf.FileSprite(png, 0, 0, 768, 768, xofs=xofs - 384, yofs=yofs - 384, zoom=sprite_zoom, mask=mask))
         sprites.append(grf.AlternativeSprites(*alt))
 
     return [{
@@ -92,7 +95,7 @@ def make_train_sprites(path):
     return make_sprites(path, OFFSETS)
 
 
-def make_ship_sprites(path_empty, path_loaded):
+def make_ship_sprites(path_empty, mask_path, path_loaded):
     OFFSETS = {
         64: [
             (1, 0),
@@ -106,8 +109,8 @@ def make_ship_sprites(path_empty, path_loaded):
         ],
     }
 
-    empty = make_sprites(path_empty, OFFSETS)[0]
-    loaded = make_sprites(path_loaded, OFFSETS)[0]
+    empty = make_sprites(path_empty, OFFSETS, mask_path=mask_path)[0]
+    loaded = make_sprites(path_loaded, OFFSETS, mask_path=mask_path)[0]
     return [{
         'name': empty['name'],
         'sprites': lib.VehicleSprites(
@@ -151,7 +154,7 @@ Train(
 Ship(
     id=300,
     name='CVN68',
-    liveries=make_ship_sprites('cvn68', 'cvn68_loaded'),
+    liveries=make_ship_sprites('cvn68', 'cvn68_mask2cc', 'cvn68_loaded'),
     max_speed=Ship.kmh(100),
     introduction_date=date(1980, 1, 1),
     vehicle_life=40,
