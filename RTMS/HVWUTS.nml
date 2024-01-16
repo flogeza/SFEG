@@ -1,0 +1,1238 @@
+grf {
+	grfid: "HS\16\30";
+	name: string(STR_GRF_NAME);
+	desc: string(STR_GRF_DESC);
+	version: 10;
+	min_compatible_version: 5722;
+	param 0 {
+        param_cost_factor {
+            type: int;
+            name: string(STR_PARAM_BUY_NAME);
+            desc: string(STR_PARAM_BUY_DESC);
+            min_value: 0;
+            max_value: 4;
+            def_value: 2;
+            names: {
+					0: string(STR_PARAM_GAME_VERY_EASY);
+                    1: string(STR_PARAM_GAME_EASY);
+					2: string(STR_PARAM_GAME_NORMAL);
+					3: string(STR_PARAM_GAME_HARD);
+					4: string(STR_PARAM_GAME_VERY_HARD);
+                    };
+				}
+			}
+	param 1 {
+		param_running_cost_factor {
+            type: int;
+            name: string(STR_PARAM_MAINTENANCE_NAME);
+            desc: string(STR_PARAM_MAINTENANCE_DESC);
+            min_value: 0;
+            max_value: 4;
+            def_value: 2;
+            names: {
+					0: string(STR_PARAM_GAME_VERY_EASY);
+                    1: string(STR_PARAM_GAME_EASY);
+					2: string(STR_PARAM_GAME_NORMAL);
+					3: string(STR_PARAM_GAME_HARD);
+					4: string(STR_PARAM_GAME_VERY_HARD);
+                    };
+				}
+			}
+
+}
+
+parapuco = (param_cost_factor == 1) ? 2 : (param_cost_factor == 2) ? 4 : (param_cost_factor == 3) ? 8 : (param_cost_factor == 4) ? 16 : 1;
+pararuco = (param_running_cost_factor == 1) ? 2 : (param_running_cost_factor == 2) ? 4 : (param_running_cost_factor == 3) ? 8 : (param_running_cost_factor == 4) ? 16 : 1;
+
+railtypetable {
+//SIMA
+	RAIL, RLOW, RMED, RHIG, 
+//FELSOVEZETEK
+	ELRL, /*3RDC,*/ ELOW, CLOW, EMED, CMED, EHIG, HSTR, 
+//HARMADIK SIN + 3RDC, CLOW, CMED, 
+	/*3RDR, 3LOW, 3MED,*/ MTRO, MTRC, MTRS, MTRU, MTRT     
+}
+
+
+cargotable {
+//PASSENGERS CLASS
+PASS, TOUR, 
+//MAIL CLASS
+MAIL,
+//EXPRESS CLASS
+GOOD,
+//ARMOURED CLASS
+VALU, GOLD, DIAM, 
+//BULK CLASS
+COAL, GRAI,  IORE, WHEA, MAIZ, CORE, SUGR, AORE, BEAN, GRVL, LIME, SAND, SCMT, 
+//PIECE GOODS CLASS
+LVST, WOOD, STEL, PAPR,  COPR, METL, 
+//LIQUID CLASS
+OIL_, RUBR, WATR, PETR, RFPR, 
+//EXPRESS + REFRIGERATED CLASS
+FOOD, FISH, MEAT, 
+//BULK + REFRIGERATED CLASS
+FRUT, 
+//BULK + COVERED CLASS
+CLAY, CMNT, OLSD, 
+//BULK + PIECE CLASS
+FERT, FICR, WDPR, RCYC, 
+//HAZARDOUS CLASS
+
+//PIECE GOODS + COVERED CLASS
+BDMT, WOOL, TEXT, 
+//OVERSIZED CLASS
+
+//PIECE + OVERSIZED CLASS
+GLAS, VEHI, 
+//POWDERIZED CLASS (COVER)
+
+//EXPRESS + LIQUID + REFRIGERATED
+MILK, 
+//EXPRESS + PIECE + LOQUID CLASS
+BEER, 
+//EXPRESS + PIECE CLASS
+BOOM, ENSP, FMSP, JAVA, VPTS, VENG, VBOD,
+}
+
+traininfo_y_offset = 0;
+train_width_32_px = 0;
+
+template tmpl_purchase() {
+	[0,	0,	99,	25,	-25,-15]}
+	
+template tmpl_1(z1){
+	[0		*z1,	0,	11	*z1,	49	*z1,	-5	*z1,	-13	*z1,	ANIM]
+	[19		*z1,	0,	54	*z1,	40	*z1,	-45	*z1,	-12	*z1,	ANIM]
+	[81		*z1,	0,	69	*z1,	15	*z1,	-54	*z1,	-10	*z1,	ANIM]
+	[158	*z1,	0,	54	*z1,	40	*z1,	-41	*z1,	-29	*z1,	ANIM]
+	[220	*z1,	0,	11	*z1,	49	*z1,	-6	*z1,	-32	*z1,	ANIM]
+	[239	*z1,	0,	54	*z1,	40	*z1,	-15	*z1,	-28	*z1,	ANIM]
+	[301	*z1,	0,	69	*z1,	15	*z1,	-11	*z1,	-9	*z1,	ANIM]
+	[378	*z1,	0,	54	*z1,	40	*z1,	-8	*z1,	-14	*z1,	ANIM]}
+
+template tmpl_toldat() {
+	[0,	0,	2,	2,	1,	1]}	
+
+spriteset(ss_toldat, "src/icons.png")		{tmpl_toldat()}
+
+//Wood logo, replaces ł 0x0142
+font_glyph (NORMAL, 0x0142, "src/icons.png") {[20,80,24,10,0,0]}
+font_glyph (SMALL, 0x0142, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (LARGE, 0x0142, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (MONO, 0x0142, "src/icons.png") {[10,80,1,1,0,0]}
+
+//Trailer logo, replaces Ł 0x0141
+font_glyph (NORMAL, 0x0141, "src/icons.png") {[60,80,29,10,0,0]}
+font_glyph (SMALL, 0x0141, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (LARGE, 0x0141, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (MONO, 0x0141, "src/icons.png") {[10,80,1,1,0,0]}
+
+//Double logo, replaces đ 0x0111
+font_glyph (NORMAL, 0x0111, "src/icons.png") {[110,80,29,10,0,0]}
+font_glyph (SMALL, 0x0111, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (LARGE, 0x0111, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (MONO, 0x0111, "src/icons.png") {[10,80,1,1,0,0]}
+
+//Triple logo, replaces Đ 0x0110
+font_glyph (NORMAL, 0x0110, "src/icons.png") {[160,80,25,10,0,0]}
+font_glyph (SMALL, 0x0110, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (LARGE, 0x0110, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (MONO, 0x0110, "src/icons.png") {[10,80,1,1,0,0]}
+
+//Twin logo, replaces Ń 0x0143
+font_glyph (NORMAL, 0x0143, "src/icons.png") {[20,110,21,10,0,0]}
+font_glyph (SMALL, 0x0143, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (LARGE, 0x0143, "src/icons.png") {[10,80,1,1,0,0]}
+font_glyph (MONO, 0x0143, "src/icons.png") {[10,80,1,1,0,0]}
+// --------------------------------------------------------------------------------817
+
+spriteset(ss_817_purchase, "src/METRO/817_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+//cc
+spriteset(ss_817a_cc, "src/METRO/817a_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817a_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817a_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817a_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817a_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817b_cc, "src/METRO/817b_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817b_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817b_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817b_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817b_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817c_cc, "src/METRO/817c_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817c_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817c_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817c_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817c_cc_4x_8bpp.png") {tmpl_1(4)}
+//cc2
+spriteset(ss_817a_cc2, "src/METRO/817a_cc2_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817a_cc2, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817a_cc2_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817a_cc2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817a_cc2_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817b_cc2, "src/METRO/817b_cc2_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817b_cc2, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817b_cc2_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817b_cc2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817b_cc2_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817c_cc2, "src/METRO/817c_cc2_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817c_cc2, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817c_cc2_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817c_cc2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817c_cc2_4x_8bpp.png") {tmpl_1(4)}
+//bkv
+spriteset(ss_817a_bkv, "src/METRO/817a_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817a_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817a_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817a_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817a_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817b_bkv, "src/METRO/817b_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817b_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817b_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817b_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817b_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817c_bkv, "src/METRO/817c_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817c_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817c_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817c_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817c_bkv_4x_8bpp.png") {tmpl_1(4)}
+//bkv2
+spriteset(ss_817a_bkv2, "src/METRO/817a_bkv2_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817a_bkv2, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817a_bkv2_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817a_bkv2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817a_bkv2_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817b_bkv2, "src/METRO/817b_bkv2_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817b_bkv2, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817b_bkv2_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817b_bkv2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817b_bkv2_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_817c_bkv2, "src/METRO/817c_bkv2_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_817c_bkv2, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/817c_bkv2_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_817c_bkv2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/817c_bkv2_4x_8bpp.png") {tmpl_1(4)}
+
+//cc
+switch (FEAT_TRAINS, SELF, sw_817a_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817a_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_817b_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817b_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_817c_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817c_cc;
+}
+switch (FEAT_TRAINS, SELF, swp2_817_cc, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_817c_cc;
+	sw_817b_cc;
+}
+switch (FEAT_TRAINS, SELF, swp1_817_cc, position_in_consist) {	//pozició
+	0: sw_817a_cc;
+	swp2_817_cc;
+}
+//cc2
+switch (FEAT_TRAINS, SELF, sw_817a_cc2, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817a_cc2;
+}
+switch (FEAT_TRAINS, SELF, sw_817b_cc2, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817b_cc2;
+}
+switch (FEAT_TRAINS, SELF, sw_817c_cc2, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817c_cc2;
+}
+switch (FEAT_TRAINS, SELF, swp2_817_cc2, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_817c_cc2;
+	sw_817b_cc2;
+}
+switch (FEAT_TRAINS, SELF, swp1_817_cc2, position_in_consist) {	//pozició
+	0: sw_817a_cc2;
+	swp2_817_cc2;
+}
+//bkv
+switch (FEAT_TRAINS, SELF, sw_817a_bkv, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817a_bkv;
+}
+switch (FEAT_TRAINS, SELF, sw_817b_bkv, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817b_bkv;
+}
+switch (FEAT_TRAINS, SELF, sw_817c_bkv, position_in_articulated_veh ) { //pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817c_bkv;
+}
+switch (FEAT_TRAINS, SELF, swp2_817_bkv, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_817c_bkv;
+	sw_817b_bkv;
+}
+switch (FEAT_TRAINS, SELF, swp1_817_bkv, position_in_consist) {	//pozició
+	0: sw_817a_bkv;
+	swp2_817_bkv;
+}
+//bkv2
+switch (FEAT_TRAINS, SELF, sw_817a_bkv2, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817a_bkv2;
+}
+switch (FEAT_TRAINS, SELF, sw_817b_bkv2, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817b_bkv2;
+}
+switch (FEAT_TRAINS, SELF, sw_817c_bkv2, position_in_articulated_veh ) { //pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_817c_bkv2;
+}
+switch (FEAT_TRAINS, SELF, swp2_817_bkv2, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_817c_bkv2;
+	sw_817b_bkv2;
+}
+switch (FEAT_TRAINS, SELF, swp1_817_bkv2, position_in_consist) {	//pozició
+	0: sw_817a_bkv2;
+	swp2_817_bkv2;
+}
+
+switch (FEAT_TRAINS, SELF, sw_817, cargo_subtype) { //refit
+	0: swp1_817_cc;
+	1: swp1_817_cc2;
+	2: swp1_817_bkv;
+	3: swp1_817_bkv2;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_817_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_CC2);
+	2: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	3: return string(STR_COLOUR_SCHEME_BUDAPEST2);
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_817_articulated, extra_callback_info1) { //csuklósítás
+    0: item_817;
+    1: item_817;
+    2: item_817;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_817_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_817_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch(FEAT_TRAINS, SELF, sw_817_start_stop, num_vehs_in_consist) {
+    0..4: return string(STR_817_CANNOT_START);
+	return CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_817_can_attach_wagon, vehicle_type_id) {
+    item_817: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_817_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_817) {
+	property {
+        name:								string(STR_817_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(1979,06,1);
+		track_type:                   		ELRL;
+        model_life:						50;
+        vehicle_life:						50;
+        reliability_decay:				35;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					125;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								598 hp;
+		extra_power_per_wagon:			598 hp;
+        weight:							34 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_817;
+		purchase:						ss_817_purchase;
+		articulated_part:        		sw_817_articulated;
+		length:                  		sw_817_length;
+		cargo_subtype_text: 			sw_817_livery_text;
+		cost_factor:					60 * parapuco;
+		running_cost_factor:			16 * pararuco;
+		cargo_capacity:				sw_817_capacity;
+		purchase_cargo_capacity :	sw_817_capacity;
+		additional_text: 				string(STR_817_ADAT);
+	   	start_stop:					sw_817_start_stop;
+		can_attach_wagon:				sw_817_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------817a End
+// --
+// --
+// --------------------------------------------------------------------------------CL
+
+spriteset(ss_CL_purchase, "src/CL/CL_buy_8bpp.png")		{tmpl_purchase()}
+spriteset(ss_CL_purchase_PDO, "src/CL/CL_buy_p_8bpp.png")		{tmpl_purchase()}
+//CCSZEGED
+spriteset(ss_CLa_ccsz, "src/CL/CLa_ccsz_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLa_ccsz, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLa_ccsz_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLa_ccsz, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLa_ccsz_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccsz, "src/CL/CLb_ccsz_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccsz, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccsz, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccsz_pup, "src/CL/CLb_ccsz_pup_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccsz_pup, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pup_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccsz_pup, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pup_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccsz_pdo, "src/CL/CLb_ccsz_pdo_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccsz_pdo, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pdo_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccsz_pdo, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pdo_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLc_ccsz, "src/CL/CLc_ccsz_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLc_ccsz, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLc_ccsz_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLc_ccsz, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLc_ccsz_4x_8bpp.png") {tmpl_1(4)}
+//CCCHEMNITZ
+spriteset(ss_CLa_ccch, "src/CL/CLa_ccch_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLa_ccch, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLa_ccch_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLa_ccch, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLa_ccch_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccch, "src/CL/CLb_ccch_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccch, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccch, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccch_pup, "src/CL/CLb_ccch_pup_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccch_pup, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pup_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccch_pup, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pup_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccch_pdo, "src/CL/CLb_ccch_pdo_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccch_pdo, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pdo_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccch_pdo, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pdo_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLc_ccch, "src/CL/CLc_ccch_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLc_ccch, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLc_ccch_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLc_ccch, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLc_ccch_4x_8bpp.png") {tmpl_1(4)}
+//CCKARLSRUHE
+spriteset(ss_CLa_ccka, "src/CL/CLa_ccka_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLa_ccka, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLa_ccka_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLa_ccka, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLa_ccka_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccka, "src/CL/CLb_ccka_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccka, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccka, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccka_pup, "src/CL/CLb_ccka_pup_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccka_pup, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pup_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccka_pup, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pup_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccka_pdo, "src/CL/CLb_ccka_pdo_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccka_pdo, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pdo_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccka_pdo, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pdo_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLc_ccka, "src/CL/CLc_ccka_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLc_ccka, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLc_ccka_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLc_ccka, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLc_ccka_4x_8bpp.png") {tmpl_1(4)}
+
+
+switch (FEAT_TRAINS, SELF, swg_CL_purchase, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CL_purchase;    // Alap modell
+    1: return ss_CL_purchase_PDO;    // Pantonograf
+}
+//A
+switch (FEAT_TRAINS, SELF, sw_CLb_ccsz_panto, tile_has_catenary) {
+	0: ss_CLb_ccsz_pdo;
+	1: ss_CLb_ccsz_pup;	
+}
+switch (FEAT_TRAINS, SELF, sgw_CLb_ccsz, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CLb_ccsz;    // Alap modell
+    1: return sw_CLb_ccsz_panto;    // Pantonograf
+}
+switch (FEAT_TRAINS, SELF, sw_CL_ccsz, position_in_articulated_veh ) {
+    1: ss_toldat;
+	2: sgw_CLb_ccsz;
+	3: ss_toldat;
+	4: ss_CLc_ccsz;
+	5: ss_toldat;
+    ss_CLa_ccsz;
+}
+//B
+switch (FEAT_TRAINS, SELF, sw_CLb_ccch_panto, tile_has_catenary) {
+	0: ss_CLb_ccch_pdo;
+	1: ss_CLb_ccch_pup;	
+}
+switch (FEAT_TRAINS, SELF, sgw_CLb_ccch, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CLb_ccch;    // Alap modell
+    1: return sw_CLb_ccch_panto;    // Pantonograf
+}
+switch (FEAT_TRAINS, SELF, sw_CL_ccch, position_in_articulated_veh ) {
+    1: ss_toldat;
+	2: sgw_CLb_ccch;
+	3: ss_toldat;
+	4: ss_CLc_ccch;
+	5: ss_toldat;
+    ss_CLa_ccch;
+}
+//C
+switch (FEAT_TRAINS, SELF, sw_CLb_ccka_panto, tile_has_catenary) {
+	0: ss_CLb_ccka_pdo;
+	1: ss_CLb_ccka_pup;	
+}
+switch (FEAT_TRAINS, SELF, sgw_CLb_ccka, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CLb_ccka;    // Alap modell
+    1: return sw_CLb_ccka_panto;    // Pantonograf
+}
+switch (FEAT_TRAINS, SELF, sw_CL_ccka, position_in_articulated_veh ) {
+    1: ss_toldat;
+	2: sgw_CLb_ccka;
+	3: ss_toldat;
+	4: ss_CLc_ccka;
+	5: ss_toldat;
+    ss_CLa_ccka;
+}
+//
+switch (FEAT_TRAINS, SELF, sw_CL_ss, cargo_subtype) {
+	0: sw_CL_ccsz;
+	1: sw_CL_ccch;	
+	2: sw_CL_ccka;	
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_articulated, extra_callback_info1) {
+    0: item_CL;
+    1: item_CL;
+    2: item_CL;
+    3: item_CL;
+    4: item_CL;
+    5: item_CL;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 0;
+	2: return 72;
+	3: return 0;
+	4: return 72;
+	5: return 0;
+    return 72;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_length, position_in_articulated_veh) {
+	1: return 4;
+	2: return 8;
+	3: return 2;
+	4: return 5;
+	5: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_effect, current_railtype) {
+	RAIL: return VISUAL_EFFECT_DIESEL;
+	ELRL: return VISUAL_EFFECT_ELECTRIC;	
+}
+switch (FEAT_TRAINS, SELF, sw_CL_power, current_railtype) {
+	RAIL: return 1046;
+	ELRL: return 778;	
+}
+switch (FEAT_TRAINS, SELF, sw_CL_livery_text, cargo_subtype) {
+	0: return string(STR_COLOUR_SCHEME_CCSZEGED);
+	1: return string(STR_COLOUR_SCHEME_CCCHEMNITZ);	
+	2: return string(STR_COLOUR_SCHEME_CCKARLSRUHE);	
+	CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_CL_can_attach_wagon, vehicle_type_id) {
+    item_CL: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_CL_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_CL) {
+	property {
+        name:								string(STR_CL_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(2021,01,01);
+		track_type:                   		RAIL;
+        model_life:						25;
+        vehicle_life:						40;
+        reliability_decay:				50;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					20;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								100 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								580 kW;
+        weight:							71 ton;
+        cargo_capacity:					216;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		EFFECT_SPAWN_MODEL_DIESEL;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_DIESEL;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+    }
+    graphics {
+		default:                 		sw_CL_ss;
+		purchase:						swg_CL_purchase;
+		articulated_part:        		sw_CL_articulated;
+		length:                  		sw_CL_length;
+		cargo_subtype_text: 			sw_CL_livery_text;
+		cost_factor:					40 * parapuco;
+		running_cost_factor:			200 * pararuco;
+        power:							sw_CL_power;
+		cargo_capacity:				sw_CL_capacity;
+		purchase_cargo_capacity :	sw_CL_capacity;
+		additional_text: 				string(STR_CL_ADAT);
+		can_attach_wagon:				sw_CL_can_attach_wagon;
+		visual_effect_and_powered:	sw_CL_effect;
+    }
+}
+
+
+// --------------------------------------------------------------------------------CL End
+// --
+// --
+// --------------------------------------------------------------------------------EV
+
+spriteset(ss_EV_purchase, "src/METRO/EV_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_EVa_cc, "src/METRO/EVa_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVa_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVa_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVa_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVa_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVa_bkv, "src/METRO/EVa_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVa_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVa_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVa_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVa_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVb_cc, "src/METRO/EVb_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVb_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVb_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVb_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVb_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVb_bkv, "src/METRO/EVb_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVb_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVb_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVb_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVb_bkv_4x_8bpp.png") {tmpl_1(4)}
+
+
+switch (FEAT_TRAINS, SELF, swp_EV_cc, position_in_consist % 6) {
+    1: ss_toldat;
+    2: ss_toldat;
+    3: ss_EVb_cc;
+    4: ss_toldat;
+    5: ss_toldat;
+	ss_EVa_cc;
+}
+switch (FEAT_TRAINS, SELF, swp_EV_bkv, position_in_consist % 6) {
+    1: ss_toldat;
+    2: ss_toldat;
+    3: ss_EVb_bkv;
+    4: ss_toldat;
+    5: ss_toldat;
+	ss_EVa_bkv;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EV, cargo_subtype) { //refit
+	0: swp_EV_cc;
+	1: swp_EV_bkv;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EV_articulated, extra_callback_info1) { //csuklósítás
+    0: item_EV;
+    1: item_EV;
+    2: item_EV;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_EV_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EV_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EV_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_EV_start_stop, num_vehs_in_consist) {
+    6: return CB_RESULT_NO_TEXT;
+    12: return CB_RESULT_NO_TEXT;
+    18: return CB_RESULT_NO_TEXT;
+	return string(STR_EV_CANNOT_START);
+}
+switch(FEAT_TRAINS, SELF, sw_EV_can_attach_wagon, vehicle_type_id) {
+    item_EV: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_EV_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_EV) {
+	property {
+        name:								string(STR_EV_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(1970,06,1);
+		track_type:                   		ELRL;
+        model_life:						50;
+        vehicle_life:						50;
+        reliability_decay:				35;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					125;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								359 hp;
+		extra_power_per_wagon:			359 hp;
+        weight:							33 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_EV;
+		purchase:						ss_EV_purchase;
+		articulated_part:        		sw_EV_articulated;
+		length:                  		sw_EV_length;
+		cargo_subtype_text: 			sw_EV_livery_text;
+		cost_factor:					50 * parapuco;
+		running_cost_factor:			15 * pararuco;
+		cargo_capacity:				sw_EV_capacity;
+		purchase_cargo_capacity :	sw_EV_capacity;
+		additional_text: 				string(STR_EV_ADAT);
+	   	start_stop:					sw_EV_start_stop;
+		can_attach_wagon:				sw_EV_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EVa End
+// --
+// --
+// --------------------------------------------------------------------------------EV3
+
+spriteset(ss_EV3_purchase, "src/METRO/EV3_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_EV3a_cc, "src/METRO/EV3a_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3a_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3a_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EV3a_bkv, "src/METRO/EV3a_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3a_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3a_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3a_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3a_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EV3b_cc, "src/METRO/EV3b_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3b_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3b_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3b_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3b_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EV3b_bkv, "src/METRO/EV3b_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3b_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3b_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3b_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3b_bkv_4x_8bpp.png") {tmpl_1(4)}
+
+
+switch (FEAT_TRAINS, SELF, swp_EV3_cc, position_in_consist % 6) {
+    1: ss_toldat;
+    2: ss_toldat;
+    3: ss_EV3b_cc;
+    4: ss_toldat;
+    5: ss_toldat;
+	ss_EV3a_cc;
+}
+switch (FEAT_TRAINS, SELF, swp_EV3_bkv, position_in_consist % 6) {
+    1: ss_toldat;
+    2: ss_toldat;
+    3: ss_EV3b_bkv;
+    4: ss_toldat;
+    5: ss_toldat;
+	ss_EV3a_bkv;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EV3, cargo_subtype) { //refit
+	0: swp_EV3_cc;
+	1: swp_EV3_bkv;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_articulated, extra_callback_info1) { //csuklósítás
+    0: item_EV3;
+    1: item_EV3;
+    2: item_EV3;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_EV3_start_stop, num_vehs_in_consist) {
+    6: return CB_RESULT_NO_TEXT;
+    12: return CB_RESULT_NO_TEXT;
+    18: return CB_RESULT_NO_TEXT;
+	return string(STR_EV3_CANNOT_START);
+}
+switch(FEAT_TRAINS, SELF, sw_EV3_can_attach_wagon, vehicle_type_id) {
+    item_EV3: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_EV3_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_EV3) {
+	property {
+        name:								string(STR_EV3_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(1975,06,1);
+		track_type:                   		ELRL;
+        model_life:						50;
+        vehicle_life:						50;
+        reliability_decay:				35;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					125;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								392 hp;
+		extra_power_per_wagon:			392 hp;
+        weight:							33 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_EV3;
+		purchase:						ss_EV3_purchase;
+		articulated_part:        		sw_EV3_articulated;
+		length:                  		sw_EV3_length;
+		cargo_subtype_text: 			sw_EV3_livery_text;
+		cost_factor:					50 * parapuco;
+		running_cost_factor:			15 * pararuco;
+		cargo_capacity:				sw_EV3_capacity;
+		purchase_cargo_capacity :	sw_EV3_capacity;
+		additional_text: 				string(STR_EV3_ADAT);
+	   	start_stop:					sw_EV3_start_stop;
+		can_attach_wagon:				sw_EV3_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EV3 End
+// --
+// --
+// --------------------------------------------------------------------------------EVA
+
+spriteset(ss_EVA_purchase, "src/METRO/EVA_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_EVAa_cc, "src/METRO/EVAa_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAa_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAa_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAa_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAa_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAb_cc, "src/METRO/EVAb_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAb_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAb_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAb_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAb_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAc_cc, "src/METRO/EVAc_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAc_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAc_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAc_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAc_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAa_bkv, "src/METRO/EVAa_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAa_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAa_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAa_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAa_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAb_bkv, "src/METRO/EVAb_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAb_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAb_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAb_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAb_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAc_bkv, "src/METRO/EVAc_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAc_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAc_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAc_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAc_bkv_4x_8bpp.png") {tmpl_1(4)}
+
+switch (FEAT_TRAINS, SELF, sw_EVAa_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAa_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAb_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAb_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAc_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAc_cc;
+}
+switch (FEAT_TRAINS, SELF, swp2_EVA_cc, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_EVAc_cc;
+	sw_EVAb_cc;
+}
+switch (FEAT_TRAINS, SELF, swp1_EVA_cc, position_in_consist) {	//pozició
+	0: sw_EVAa_cc;
+	swp2_EVA_cc;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EVAa_bkv, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAa_bkv;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAb_bkv, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAb_bkv;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAc_bkv, position_in_articulated_veh ) { //pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAc_bkv;
+}
+switch (FEAT_TRAINS, SELF, swp2_EVA_bkv, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_EVAc_bkv;
+	sw_EVAb_bkv;
+}
+switch (FEAT_TRAINS, SELF, swp1_EVA_bkv, position_in_consist) {	//pozició
+	0: sw_EVAa_bkv;
+	swp2_EVA_bkv;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EVA, cargo_subtype) { //refit
+	0: swp1_EVA_cc;
+	1: swp1_EVA_bkv;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_articulated, extra_callback_info1) { //csuklósítás
+    0: item_EVA;
+    1: item_EVA;
+    2: item_EVA;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch(FEAT_TRAINS, SELF, sw_EVA_start_stop, num_vehs_in_consist) {
+    0..4: return string(STR_EVA_CANNOT_START);
+	return CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_EVA_can_attach_wagon, vehicle_type_id) {
+    item_EVA: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_EVA_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_EVA) {
+	property {
+        name:								string(STR_EVA_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(2000,06,1);
+		track_type:                   		ELRL;
+        model_life:						25;
+        vehicle_life:						50;
+        reliability_decay:				35;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					125;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								392 hp;
+		extra_power_per_wagon:			392 hp;
+        weight:							33 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_EVA;
+		purchase:						ss_EVA_purchase;
+		articulated_part:        		sw_EVA_articulated;
+		length:                  		sw_EVA_length;
+		cargo_subtype_text: 			sw_EVA_livery_text;
+		cost_factor:					56 * parapuco;
+		running_cost_factor:			15 * pararuco;
+		cargo_capacity:				sw_EVA_capacity;
+		purchase_cargo_capacity :	sw_EVA_capacity;
+		additional_text: 				string(STR_EVA_ADAT);
+	   	start_stop:					sw_EVA_start_stop;
+		can_attach_wagon:				sw_EVA_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EVAa End
+// --
+// --
+// --------------------------------------------------------------------------------MP73
+
+spriteset(ss_MP73_purchase, "src/METRO/MP73_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_MP73a_cc, "src/METRO/MP73a_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_MP73a_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/MP73a_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_MP73a_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/MP73a_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_MP73b_cc, "src/METRO/MP73b_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_MP73b_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/MP73b_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_MP73b_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/MP73b_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_MP73c_cc, "src/METRO/MP73c_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_MP73c_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/MP73c_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_MP73c_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/MP73c_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_MP73a_old, "src/METRO/MP73a_old_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_MP73a_old, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/MP73a_old_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_MP73a_old, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/MP73a_old_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_MP73b_old, "src/METRO/MP73b_old_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_MP73b_old, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/MP73b_old_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_MP73b_old, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/MP73b_old_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_MP73c_old, "src/METRO/MP73c_old_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_MP73c_old, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/MP73c_old_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_MP73c_old, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/MP73c_old_4x_8bpp.png") {tmpl_1(4)}
+
+switch (FEAT_TRAINS, SELF, sw_MP73a_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_MP73a_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73b_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_MP73b_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73c_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_MP73c_cc;
+}
+switch (FEAT_TRAINS, SELF, swp2_MP73_cc, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_MP73c_cc;
+	sw_MP73b_cc;
+}
+switch (FEAT_TRAINS, SELF, swp1_MP73_cc, position_in_consist) {	//pozició
+	0: sw_MP73a_cc;
+	swp2_MP73_cc;
+}
+
+switch (FEAT_TRAINS, SELF, sw_MP73a_old, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_MP73a_old;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73b_old, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_MP73b_old;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73c_old, position_in_articulated_veh ) { //pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_MP73c_old;
+}
+switch (FEAT_TRAINS, SELF, swp2_MP73_old, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_MP73c_old;
+	sw_MP73b_old;
+}
+switch (FEAT_TRAINS, SELF, swp1_MP73_old, position_in_consist) {	//pozició
+	0: sw_MP73a_old;
+	swp2_MP73_old;
+}
+
+switch (FEAT_TRAINS, SELF, sw_MP73, cargo_subtype) { //refit
+	0: swp1_MP73_cc;
+	1: swp1_MP73_old;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73_articulated, extra_callback_info1) { //csuklósítás
+    0: item_MP73;
+    1: item_MP73;
+    2: item_MP73;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73_length, position_in_articulated_veh) {	//modellhossz
+	1: return 1;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_MP73_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch(FEAT_TRAINS, SELF, sw_MP73_start_stop, num_vehs_in_consist) {
+    0..4: return string(STR_MP73_CANNOT_START);
+	return CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_MP73_can_attach_wagon, vehicle_type_id) {
+    item_MP73: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_MP73_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_MP73) {
+	property {
+        name:								string(STR_MP73_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(1983,06,1);
+		track_type:                   		ELRL;
+        model_life:						5;
+        vehicle_life:						30;
+        reliability_decay:				70;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					120;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								392 hp;
+		extra_power_per_wagon:			392 hp;
+        weight:							33 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+//		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_MP73;
+		purchase:						ss_MP73_purchase;
+		articulated_part:        		sw_MP73_articulated;
+		length:                  		sw_MP73_length;
+		cargo_subtype_text: 			sw_MP73_livery_text;
+		cost_factor:					80 * parapuco;
+		running_cost_factor:			30 * pararuco;
+		cargo_capacity:				sw_MP73_capacity;
+		purchase_cargo_capacity :	sw_MP73_capacity;
+		additional_text: 				string(STR_MP73_ADAT);
+	   	start_stop:					sw_MP73_start_stop;
+		can_attach_wagon:				sw_MP73_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------MP73a End
+// --
+// --
+// --------------------------------------------------------------------------------METR
+
+spriteset(ss_METR_purchase, "src/METRO/METR_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_METRa_cc, "src/METRO/EV3a_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_METRa_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_METRa_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_4x_8bpp.png") {tmpl_1(4)}
+
+switch (FEAT_TRAINS, SELF, sw_METR, cargo_subtype) { //refit
+	0: ss_METRa_cc;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_articulated, extra_callback_info1) { //csuklósítás
+    0: item_METR;
+    1: item_METR;
+    2: item_METR;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	CB_RESULT_NO_TEXT;
+}
+
+item(FEAT_TRAINS, item_METR) {
+	property {
+        name:								string(STR_METR_NAME);
+        climates_available:				NO_CLIMATE;
+        introduction_date:				date(1910,06,1);
+		track_type:                   		ELRL;
+        model_life:						1;
+        vehicle_life:						1;
+        reliability_decay:				1;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					1;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								1 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								1 hp;
+		extra_power_per_wagon:			1 hp;
+        weight:							1 ton;
+        cargo_capacity:					1;
+		cargo_age_period:					1;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+//		variant_group:					item_EV;
+    }
+    graphics {
+		default:                 		sw_METR;
+		purchase:						ss_METR_purchase;
+		articulated_part:        		sw_METR_articulated;
+		length:                  		sw_METR_length;
+		cargo_subtype_text: 			sw_METR_livery_text;
+		cost_factor:					1 * parapuco;
+		running_cost_factor:			1 * pararuco;
+		cargo_capacity:				sw_METR_capacity;
+		purchase_cargo_capacity :	sw_METR_capacity;
+		additional_text: 				string(STR_METR_ADAT);
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EV3 End
+// --
+// --
+sort(FEAT_TRAINS, [
+	item_METR,
+	item_EV,
+	item_EV3,
+	item_817,
+	item_EVA,
+	item_MP73,
+	item_CL
+	]);

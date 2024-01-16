@@ -1,0 +1,220 @@
+// --------------------------------------------------------------------------------CL
+
+spriteset(ss_CL_purchase, "src/CL/CL_buy_8bpp.png")		{tmpl_purchase()}
+spriteset(ss_CL_purchase_PDO, "src/CL/CL_buy_p_8bpp.png")		{tmpl_purchase()}
+//CCSZEGED
+spriteset(ss_CLa_ccsz, "src/CL/CLa_ccsz_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLa_ccsz, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLa_ccsz_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLa_ccsz, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLa_ccsz_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccsz, "src/CL/CLb_ccsz_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccsz, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccsz, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccsz_pup, "src/CL/CLb_ccsz_pup_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccsz_pup, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pup_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccsz_pup, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pup_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccsz_pdo, "src/CL/CLb_ccsz_pdo_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccsz_pdo, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pdo_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccsz_pdo, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccsz_pdo_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLc_ccsz, "src/CL/CLc_ccsz_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLc_ccsz, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLc_ccsz_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLc_ccsz, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLc_ccsz_4x_8bpp.png") {tmpl_1(4)}
+//CCCHEMNITZ
+spriteset(ss_CLa_ccch, "src/CL/CLa_ccch_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLa_ccch, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLa_ccch_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLa_ccch, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLa_ccch_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccch, "src/CL/CLb_ccch_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccch, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccch, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccch_pup, "src/CL/CLb_ccch_pup_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccch_pup, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pup_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccch_pup, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pup_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccch_pdo, "src/CL/CLb_ccch_pdo_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccch_pdo, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pdo_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccch_pdo, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccch_pdo_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLc_ccch, "src/CL/CLc_ccch_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLc_ccch, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLc_ccch_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLc_ccch, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLc_ccch_4x_8bpp.png") {tmpl_1(4)}
+//CCKARLSRUHE
+spriteset(ss_CLa_ccka, "src/CL/CLa_ccka_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLa_ccka, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLa_ccka_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLa_ccka, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLa_ccka_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccka, "src/CL/CLb_ccka_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccka, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccka, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccka_pup, "src/CL/CLb_ccka_pup_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccka_pup, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pup_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccka_pup, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pup_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLb_ccka_pdo, "src/CL/CLb_ccka_pdo_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLb_ccka_pdo, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pdo_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLb_ccka_pdo, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLb_ccka_pdo_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_CLc_ccka, "src/CL/CLc_ccka_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_CLc_ccka, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/CL/CLc_ccka_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_CLc_ccka, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/CL/CLc_ccka_4x_8bpp.png") {tmpl_1(4)}
+
+
+switch (FEAT_TRAINS, SELF, swg_CL_purchase, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CL_purchase;    // Alap modell
+    1: return ss_CL_purchase_PDO;    // Pantonograf
+}
+//A
+switch (FEAT_TRAINS, SELF, sw_CLb_ccsz_panto, tile_has_catenary) {
+	0: ss_CLb_ccsz_pdo;
+	1: ss_CLb_ccsz_pup;	
+}
+switch (FEAT_TRAINS, SELF, sgw_CLb_ccsz, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CLb_ccsz;    // Alap modell
+    1: return sw_CLb_ccsz_panto;    // Pantonograf
+}
+switch (FEAT_TRAINS, SELF, sw_CL_ccsz, position_in_articulated_veh ) {
+    1: ss_toldat;
+	2: sgw_CLb_ccsz;
+	3: ss_toldat;
+	4: ss_CLc_ccsz;
+	5: ss_toldat;
+    ss_CLa_ccsz;
+}
+//B
+switch (FEAT_TRAINS, SELF, sw_CLb_ccch_panto, tile_has_catenary) {
+	0: ss_CLb_ccch_pdo;
+	1: ss_CLb_ccch_pup;	
+}
+switch (FEAT_TRAINS, SELF, sgw_CLb_ccch, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CLb_ccch;    // Alap modell
+    1: return sw_CLb_ccch_panto;    // Pantonograf
+}
+switch (FEAT_TRAINS, SELF, sw_CL_ccch, position_in_articulated_veh ) {
+    1: ss_toldat;
+	2: sgw_CLb_ccch;
+	3: ss_toldat;
+	4: ss_CLc_ccch;
+	5: ss_toldat;
+    ss_CLa_ccch;
+}
+//C
+switch (FEAT_TRAINS, SELF, sw_CLb_ccka_panto, tile_has_catenary) {
+	0: ss_CLb_ccka_pdo;
+	1: ss_CLb_ccka_pup;	
+}
+switch (FEAT_TRAINS, SELF, sgw_CLb_ccka, [
+    STORE_TEMP((getbits(extra_callback_info1, 8, 8) < 1 ? CB_FLAG_MORE_SPRITES : 0) | PALETTE_USE_DEFAULT, 0x100),
+    getbits(extra_callback_info1, 8, 8)
+    ]) {
+    0: return ss_CLb_ccka;    // Alap modell
+    1: return sw_CLb_ccka_panto;    // Pantonograf
+}
+switch (FEAT_TRAINS, SELF, sw_CL_ccka, position_in_articulated_veh ) {
+    1: ss_toldat;
+	2: sgw_CLb_ccka;
+	3: ss_toldat;
+	4: ss_CLc_ccka;
+	5: ss_toldat;
+    ss_CLa_ccka;
+}
+//
+switch (FEAT_TRAINS, SELF, sw_CL_ss, cargo_subtype) {
+	0: sw_CL_ccsz;
+	1: sw_CL_ccch;	
+	2: sw_CL_ccka;	
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_articulated, extra_callback_info1) {
+    0: item_CL;
+    1: item_CL;
+    2: item_CL;
+    3: item_CL;
+    4: item_CL;
+    5: item_CL;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 0;
+	2: return 72;
+	3: return 0;
+	4: return 72;
+	5: return 0;
+    return 72;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_length, position_in_articulated_veh) {
+	1: return 4;
+	2: return 8;
+	3: return 2;
+	4: return 5;
+	5: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_CL_effect, current_railtype) {
+	RAIL: return VISUAL_EFFECT_DIESEL;
+	ELRL: return VISUAL_EFFECT_ELECTRIC;	
+}
+switch (FEAT_TRAINS, SELF, sw_CL_power, current_railtype) {
+	RAIL: return 1046;
+	ELRL: return 778;	
+}
+switch (FEAT_TRAINS, SELF, sw_CL_livery_text, cargo_subtype) {
+	0: return string(STR_COLOUR_SCHEME_CCSZEGED);
+	1: return string(STR_COLOUR_SCHEME_CCCHEMNITZ);	
+	2: return string(STR_COLOUR_SCHEME_CCKARLSRUHE);	
+	CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_CL_can_attach_wagon, vehicle_type_id) {
+    item_CL: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_CL_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_CL) {
+	property {
+        name:								string(STR_CL_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(2021,01,01);
+		track_type:                   		RAIL;
+        model_life:						25;
+        vehicle_life:						40;
+        reliability_decay:				50;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					20;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								100 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								580 kW;
+        weight:							71 ton;
+        cargo_capacity:					216;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		EFFECT_SPAWN_MODEL_DIESEL;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_DIESEL;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+    }
+    graphics {
+		default:                 		sw_CL_ss;
+		purchase:						swg_CL_purchase;
+		articulated_part:        		sw_CL_articulated;
+		length:                  		sw_CL_length;
+		cargo_subtype_text: 			sw_CL_livery_text;
+		cost_factor:					40 * parapuco;
+		running_cost_factor:			200 * pararuco;
+        power:							sw_CL_power;
+		cargo_capacity:				sw_CL_capacity;
+		purchase_cargo_capacity :	sw_CL_capacity;
+		additional_text: 				string(STR_CL_ADAT);
+		can_attach_wagon:				sw_CL_can_attach_wagon;
+		visual_effect_and_powered:	sw_CL_effect;
+    }
+}
+
+
+// --------------------------------------------------------------------------------CL End
+// --
+// --

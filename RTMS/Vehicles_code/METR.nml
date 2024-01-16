@@ -1,0 +1,80 @@
+// --------------------------------------------------------------------------------METR
+
+spriteset(ss_METR_purchase, "src/METRO/METR_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_METRa_cc, "src/METRO/EV3a_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_METRa_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_METRa_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_4x_8bpp.png") {tmpl_1(4)}
+
+switch (FEAT_TRAINS, SELF, sw_METR, cargo_subtype) { //refit
+	0: ss_METRa_cc;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_articulated, extra_callback_info1) { //csuklósítás
+    0: item_METR;
+    1: item_METR;
+    2: item_METR;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_METR_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	CB_RESULT_NO_TEXT;
+}
+
+item(FEAT_TRAINS, item_METR) {
+	property {
+        name:								string(STR_METR_NAME);
+        climates_available:				NO_CLIMATE;
+        introduction_date:				date(1910,06,1);
+		track_type:                   		ELRL;
+        model_life:						1;
+        vehicle_life:						1;
+        reliability_decay:				1;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					1;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								1 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								1 hp;
+		extra_power_per_wagon:			1 hp;
+        weight:							1 ton;
+        cargo_capacity:					1;
+		cargo_age_period:					1;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+//		variant_group:					item_EV;
+    }
+    graphics {
+		default:                 		sw_METR;
+		purchase:						ss_METR_purchase;
+		articulated_part:        		sw_METR_articulated;
+		length:                  		sw_METR_length;
+		cargo_subtype_text: 			sw_METR_livery_text;
+		cost_factor:					1 * parapuco;
+		running_cost_factor:			1 * pararuco;
+		cargo_capacity:				sw_METR_capacity;
+		purchase_cargo_capacity :	sw_METR_capacity;
+		additional_text: 				string(STR_METR_ADAT);
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EV3 End
+// --
+// --

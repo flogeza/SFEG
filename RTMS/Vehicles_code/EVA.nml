@@ -1,0 +1,155 @@
+// --------------------------------------------------------------------------------EVA
+
+spriteset(ss_EVA_purchase, "src/METRO/EVA_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_EVAa_cc, "src/METRO/EVAa_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAa_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAa_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAa_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAa_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAb_cc, "src/METRO/EVAb_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAb_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAb_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAb_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAb_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAc_cc, "src/METRO/EVAc_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAc_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAc_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAc_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAc_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAa_bkv, "src/METRO/EVAa_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAa_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAa_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAa_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAa_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAb_bkv, "src/METRO/EVAb_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAb_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAb_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAb_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAb_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EVAc_bkv, "src/METRO/EVAc_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EVAc_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EVAc_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EVAc_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EVAc_bkv_4x_8bpp.png") {tmpl_1(4)}
+
+switch (FEAT_TRAINS, SELF, sw_EVAa_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAa_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAb_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAb_cc;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAc_cc, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAc_cc;
+}
+switch (FEAT_TRAINS, SELF, swp2_EVA_cc, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_EVAc_cc;
+	sw_EVAb_cc;
+}
+switch (FEAT_TRAINS, SELF, swp1_EVA_cc, position_in_consist) {	//pozició
+	0: sw_EVAa_cc;
+	swp2_EVA_cc;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EVAa_bkv, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAa_bkv;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAb_bkv, position_in_articulated_veh ) {	//pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAb_bkv;
+}
+switch (FEAT_TRAINS, SELF, sw_EVAc_bkv, position_in_articulated_veh ) { //pozició csuklón belül
+	1: ss_toldat;
+	2: ss_toldat;
+    ss_EVAc_bkv;
+}
+switch (FEAT_TRAINS, SELF, swp2_EVA_bkv, position_in_consist_from_end) {	//pozició hátulról
+	2: sw_EVAc_bkv;
+	sw_EVAb_bkv;
+}
+switch (FEAT_TRAINS, SELF, swp1_EVA_bkv, position_in_consist) {	//pozició
+	0: sw_EVAa_bkv;
+	swp2_EVA_bkv;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EVA, cargo_subtype) { //refit
+	0: swp1_EVA_cc;
+	1: swp1_EVA_bkv;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_articulated, extra_callback_info1) { //csuklósítás
+    0: item_EVA;
+    1: item_EVA;
+    2: item_EVA;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EVA_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch(FEAT_TRAINS, SELF, sw_EVA_start_stop, num_vehs_in_consist) {
+    0..4: return string(STR_EVA_CANNOT_START);
+	return CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_EVA_can_attach_wagon, vehicle_type_id) {
+    item_EVA: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_EVA_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_EVA) {
+	property {
+        name:								string(STR_EVA_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(2000,06,1);
+		track_type:                   		ELRL;
+        model_life:						25;
+        vehicle_life:						50;
+        reliability_decay:				35;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					125;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								392 hp;
+		extra_power_per_wagon:			392 hp;
+        weight:							33 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_EVA;
+		purchase:						ss_EVA_purchase;
+		articulated_part:        		sw_EVA_articulated;
+		length:                  		sw_EVA_length;
+		cargo_subtype_text: 			sw_EVA_livery_text;
+		cost_factor:					56 * parapuco;
+		running_cost_factor:			15 * pararuco;
+		cargo_capacity:				sw_EVA_capacity;
+		purchase_cargo_capacity :	sw_EVA_capacity;
+		additional_text: 				string(STR_EVA_ADAT);
+	   	start_stop:					sw_EVA_start_stop;
+		can_attach_wagon:				sw_EVA_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EVAa End
+// --
+// --

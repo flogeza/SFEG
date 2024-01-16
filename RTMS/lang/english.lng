@@ -1,0 +1,63 @@
+﻿##grflangid 0x01
+# This is the English language file
+
+# GRF name and description definitions	
+STR_GRF_NAME	:RTMS v1
+STR_GRF_DESC	:{}{LTBLUE}RTMS{}{BLACK}Last update:{WHITE} 2024.02.26 {}{BLACK}Code:{GREEN}SosMakaroni{}{BLACK}Models:{GREEN}Flogeza{} {COPYRIGHT}2023 SosMakaroni & Flogeza{}{GRAY}License: GPLv2{}{BLACK}Tram Set.
+
+STR_BUG	:HVW Toyland bug, sorry :(
+
+STR_PARAM_BUY_NAME	:Purchase cost
+STR_PARAM_BUY_DESC	:For players who want to choose the purchase cost.
+STR_PARAM_MAINTENANCE_NAME	:Maintenance costs
+STR_PARAM_MAINTENANCE_DESC	:For players who want to choose the cost of maintenance.
+STR_PARAM_GAME_VERY_EASY	:/4
+STR_PARAM_GAME_EASY	:/2
+STR_PARAM_GAME_NORMAL	:1 {SILVER} By default{BLACK}
+STR_PARAM_GAME_HARD	:x2
+STR_PARAM_GAME_VERY_HARD	:x4
+
+STR_METR_NAME	:Metrovagonmas metros
+STR_METR_ADAT	:{GOLD}----------{}This metros built by Metrovagonmas in Russia.{BLACK}{}
+
+STR_EV_NAME	:Ev
+STR_EV_ADAT	:{GOLD}----------{}The{BLACK} Ev {GOLD}is a metro built by Metrovagonmas in Russia, between ... and ..., ... vehicles were supplied to Budapest.{BLACK}{}
+STR_EV3_NAME	:Ev3
+STR_EV3_ADAT	:{GOLD}----------{}The{BLACK} Ev3 {GOLD}is a metro built by Metrovagonmas in Russia, between ... and ..., ... vehicles were supplied to Budapest.{BLACK}{}
+STR_EVA_NAME	:EvA
+STR_EVA_ADAT	:{GOLD}----------{}The{BLACK} EvA {GOLD}is a metro built by Metrovagonmas in Russia, between ... and ..., ... vehicles were supplied to Budapest.{BLACK}{}
+STR_817_NAME	:81-717
+STR_817_ADAT	:{GOLD}----------{}The{BLACK} 81-717 {GOLD}is a metro built by Metrovagonmas in Russia, between ... and ..., ... vehicles were supplied to Budapest.{BLACK}{}
+STR_G2_NAME	:G2
+STR_G2_ADAT	:{GOLD}----------{}The{BLACK} G2 {GOLD}is a metro built by Ganz in Hungary, 1983, it's a prototype vehicles were supplied to Budapest.{BLACK}{}
+STR_CL_NAME	:Citylink
+STR_CL_ADAT	:{GOLD}----------{}The Stadler {BLACK}CITYLINK {GOLD}is a clever design of tram which can be configured as an urban tram or as an inter-city train.{}The barrier-free {BLACK}CITYLINK{GOLD} type tram has a low-floor design throughout.{BLACK}{}
+
+
+
+STR_COLOUR_SCHEME_CC	: - 2 CC Budapest Scheme
+STR_COLOUR_SCHEME_CC2	: - 2 CC Budapest Scheme 2.
+STR_COLOUR_SCHEME_BUDAPEST	: - Budapest Scheme
+STR_COLOUR_SCHEME_BUDAPEST2	: - Budapest Newer Scheme
+STR_COLOUR_SCHEME_CCSZEGED	: - 2 CC Szeged Scheme
+STR_COLOUR_SCHEME_DEBRECEN	: - Debrecen Scheme
+STR_COLOUR_SCHEME_CCCHEMNITZ	: - 2 CC Chemnitz Scheme
+STR_COLOUR_SCHEME_CCKARLSRUHE	: - 2 CC Karlsruhe Scheme
+STR_COLOUR_SCHEME_PROTO	: - Prototype Scheme
+STR_COLOUR_SCHEME_PEPSI	: - Pepsi advertising Scheme
+STR_COLOUR_SCHEME_COCA	: - CocaCola advertising Scheme
+
+STR_TESZT1_NAME	:Teszt gépezet
+STR_TESZT1_ADAT	:{GOLD}-Randomshit-{}
+
+STR_EV_CANNOT_START:... train only start with pair of wagon (2-4-6 wagon) or max. 8 wagon.
+STR_EV_CANNOT_ATTACH_OTHER:... only EV controlcar can be attached to EV controlcar.
+STR_EV3_CANNOT_START:... train only start with pair of wagon (2-4-8 wagon) or max. 8 wagon.
+STR_EV3_CANNOT_ATTACH_OTHER:... only EV3 controlcar can be attached to EV3 controlcar.
+STR_EVA_CANNOT_START:... train too short (min. 1 wagon).
+STR_EVA_CANNOT_ATTACH_OTHER:... only EVA wagon can be attached to EVA controlcar.
+STR_817_CANNOT_START:... train too short (min. 1 wagon).
+STR_817_CANNOT_ATTACH_OTHER:... only 81-717/81-714 wagon can be attached to 81-717 controlcar.
+STR_G2_CANNOT_START:... train too short (min. 1 wagon).
+STR_G2_CANNOT_ATTACH_OTHER:... only G2 wagon can be attached to G2 controlcar.
+STR_CL_CANNOT_ATTACH_OTHER:... only Citylink can be attached to Citylink.

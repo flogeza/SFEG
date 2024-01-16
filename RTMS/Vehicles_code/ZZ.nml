@@ -1,0 +1,9 @@
+sort(FEAT_TRAINS, [
+	item_METR,
+	item_EV,
+	item_EV3,
+	item_817,
+	item_EVA,
+	item_MP73,
+	item_CL
+	]);

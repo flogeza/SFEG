@@ -1,0 +1,121 @@
+// --------------------------------------------------------------------------------EV3
+
+spriteset(ss_EV3_purchase, "src/METRO/EV3_buy_8bpp.png")		{tmpl_purchase()}  //Vásárlási nézet
+spriteset(ss_EV3a_cc, "src/METRO/EV3a_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3a_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3a_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3a_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EV3a_bkv, "src/METRO/EV3a_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3a_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3a_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3a_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3a_bkv_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EV3b_cc, "src/METRO/EV3b_cc_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3b_cc, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3b_cc_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3b_cc, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3b_cc_4x_8bpp.png") {tmpl_1(4)}
+spriteset(ss_EV3b_bkv, "src/METRO/EV3b_bkv_1x_8bpp.png")		{tmpl_1(1)}
+alternative_sprites(ss_EV3b_bkv, ZOOM_LEVEL_IN_2X, BIT_DEPTH_8BPP, "src/METRO/EV3b_bkv_2x_8bpp.png") {tmpl_1(2)}
+alternative_sprites(ss_EV3b_bkv, ZOOM_LEVEL_IN_4X, BIT_DEPTH_8BPP, "src/METRO/EV3b_bkv_4x_8bpp.png") {tmpl_1(4)}
+
+
+switch (FEAT_TRAINS, SELF, swp_EV3_cc, position_in_consist % 6) {
+    1: ss_toldat;
+    2: ss_toldat;
+    3: ss_EV3b_cc;
+    4: ss_toldat;
+    5: ss_toldat;
+	ss_EV3a_cc;
+}
+switch (FEAT_TRAINS, SELF, swp_EV3_bkv, position_in_consist % 6) {
+    1: ss_toldat;
+    2: ss_toldat;
+    3: ss_EV3b_bkv;
+    4: ss_toldat;
+    5: ss_toldat;
+	ss_EV3a_bkv;
+}
+
+switch (FEAT_TRAINS, SELF, sw_EV3, cargo_subtype) { //refit
+	0: swp_EV3_cc;
+	1: swp_EV3_bkv;
+	CB_RESULT_NO_TEXT;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_articulated, extra_callback_info1) { //csuklósítás
+    0: item_EV3;
+    1: item_EV3;
+    2: item_EV3;
+    CB_RESULT_NO_MORE_ARTICULATED_PARTS;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_length, position_in_articulated_veh) {	//modellhossz
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_capacity, position_in_articulated_veh) {	//kapacitás
+	1: return 2;
+	2: return 8;
+    return 8;
+}
+switch (FEAT_TRAINS, SELF, sw_EV3_livery_text, cargo_subtype) {	//refitt szöveg
+	0: return string(STR_COLOUR_SCHEME_CC);
+	1: return string(STR_COLOUR_SCHEME_BUDAPEST);
+	CB_RESULT_NO_TEXT;
+}
+switch(FEAT_TRAINS, SELF, sw_EV3_start_stop, num_vehs_in_consist) {
+    6: return CB_RESULT_NO_TEXT;
+    12: return CB_RESULT_NO_TEXT;
+    18: return CB_RESULT_NO_TEXT;
+	return string(STR_EV3_CANNOT_START);
+}
+switch(FEAT_TRAINS, SELF, sw_EV3_can_attach_wagon, vehicle_type_id) {
+    item_EV3: return CB_RESULT_ATTACH_ALLOW;
+	return string(STR_EV3_CANNOT_ATTACH_OTHER);
+}
+
+item(FEAT_TRAINS, item_EV3) {
+	property {
+        name:								string(STR_EV3_NAME);
+        climates_available:				bitmask(CLIMATE_TEMPERATE, CLIMATE_ARCTIC, CLIMATE_TROPICAL);
+        introduction_date:				date(1975,06,1);
+		track_type:                   		ELRL;
+        model_life:						50;
+        vehicle_life:						50;
+        reliability_decay:				35;
+        refittable_cargo_classes:		bitmask(CC_PASSENGERS);
+        non_refittable_cargo_classes:	bitmask(CC_PIECE_GOODS, CC_EXPRESS, CC_REFRIGERATED);
+        loading_speed:					125;
+        sprite_id:							SPRITE_ID_NEW_TRAIN;
+        speed:								90 km/h;
+        misc_flags:						bitmask(TRAIN_FLAG_2CC, TRAIN_FLAG_SPRITE_STACK);
+        refit_cost:						0;
+        running_cost_base:				RUNNING_COST_ELECTRIC;
+        power:								392 hp;
+		extra_power_per_wagon:			392 hp;
+        weight:							33 ton;
+        cargo_capacity:					255;
+		cargo_age_period:					74;
+        visual_effect_and_powered :		VISUAL_EFFECT_ELECTRIC;
+		dual_headed:          	        0;
+        engine_class:                		ENGINE_CLASS_ELECTRIC;
+        tractive_effort_coefficient:	0.349;
+        air_drag_coefficient:			0.035;
+		variant_group:					item_METR;
+    }
+    graphics {
+		default:                 		sw_EV3;
+		purchase:						ss_EV3_purchase;
+		articulated_part:        		sw_EV3_articulated;
+		length:                  		sw_EV3_length;
+		cargo_subtype_text: 			sw_EV3_livery_text;
+		cost_factor:					50 * parapuco;
+		running_cost_factor:			15 * pararuco;
+		cargo_capacity:				sw_EV3_capacity;
+		purchase_cargo_capacity :	sw_EV3_capacity;
+		additional_text: 				string(STR_EV3_ADAT);
+	   	start_stop:					sw_EV3_start_stop;
+		can_attach_wagon:				sw_EV3_can_attach_wagon;
+
+    }
+}
+
+
+// --------------------------------------------------------------------------------EV3 End
+// --
+// --
